@@ -1,6 +1,6 @@
 {
   "name": "university-of-denver/du_alumni_business_directory",
-  "description": "Import Tuition Cost entities.",
+  "description": "Code and config for the Alumni Business Directory module.",
   "type": "drupal-custom-module-package",
-  "version": "9.25.0"
+  "version": "9.25.1"
 }

@@ -1,6 +1,6 @@
 name: 'DU Alumni'
 type: module
-version: 9.25.0
+version: 9.25.1
 description: 'Code and config for the Alumni Business Directory module.'
 core_version_requirement: ^9 || ^10
 package: 'Custom'
