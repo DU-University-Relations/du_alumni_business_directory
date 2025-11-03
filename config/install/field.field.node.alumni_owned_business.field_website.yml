@@ -1,0 +1,23 @@
+uuid: cdd4d782-ffb3-44f5-8e70-73445c4e4470
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_website
+    - node.type.alumni_owned_business
+  module:
+    - link
+id: node.alumni_owned_business.field_website
+field_name: field_website
+entity_type: node
+bundle: alumni_owned_business
+label: 'Website '
+description: "Add the website link(eg 'https://www.example.com') for the alumni owned business's external site here. "
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

@@ -1,0 +1,19 @@
+uuid: aaa80594-33d3-4bd1-91e2-0b895312a5a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alumni_degree
+    - node.type.alumni_owned_business
+id: node.alumni_owned_business.field_alumni_degree
+field_name: field_alumni_degree
+entity_type: node
+bundle: alumni_owned_business
+label: 'Alumni Degree'
+description: "Add the Alumni's College and Degree here(eg 'Daniels College of Business Business Studies'). "
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,95 @@
+uuid: d0c12827-f9fe-461a-84b0-1eecc8f752b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.alumni_owned_business.field_alumni_degree
+    - field.field.node.alumni_owned_business.field_alumni_graduation_year
+    - field.field.node.alumni_owned_business.field_alumni_name
+    - field.field.node.alumni_owned_business.field_alumni_role
+    - field.field.node.alumni_owned_business.field_business_category
+    - field.field.node.alumni_owned_business.field_description
+    - field.field.node.alumni_owned_business.field_discount
+    - field.field.node.alumni_owned_business.field_discount_details
+    - field.field.node.alumni_owned_business.field_featured_business
+    - field.field.node.alumni_owned_business.field_image
+    - field.field.node.alumni_owned_business.field_region
+    - field.field.node.alumni_owned_business.field_website
+    - node.type.alumni_owned_business
+  module:
+    - link
+    - svg_image
+    - text
+    - user
+_core:
+  default_config_hash: VTjrFg4UxO9OY1m3RnPH__P2uzMsbALkQe2f9c3umD0
+id: node.alumni_owned_business.teaser
+targetEntityType: node
+bundle: alumni_owned_business
+mode: teaser
+content:
+  field_business_category:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_description:
+    type: text_trimmed
+    label: hidden
+    settings:
+      trim_length: 300
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_discount:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_alumni_degree: true
+  field_alumni_graduation_year: true
+  field_alumni_name: true
+  field_alumni_role: true
+  field_discount_details: true
+  field_featured_business: true
+  field_region: true

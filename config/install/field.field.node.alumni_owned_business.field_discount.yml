@@ -1,0 +1,19 @@
+uuid: 4888f9cd-ca20-44db-8b1e-6414a2c92132
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_discount
+    - node.type.alumni_owned_business
+id: node.alumni_owned_business.field_discount
+field_name: field_discount
+entity_type: node
+bundle: alumni_owned_business
+label: Discount
+description: "Add applicable discounts(eg '20% off)' here. "
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

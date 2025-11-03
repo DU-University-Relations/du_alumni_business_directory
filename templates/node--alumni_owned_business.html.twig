@@ -1,0 +1,78 @@
+{{ attach_library('du_alumni_business_directory/alumni-business') }}
+
+<div class="node node-alumni-business">
+  <div class="content-container">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-item">
+          <a href="/alumni-business-directory" class="teaser-back-link">&lt; Back to Listing</a>
+        </div>
+
+        <div class="sidebar-item">
+          <div class="section-title">Business Category</div>
+          <a href="/alumni-business-directory?field_business_category_target_id={{ node.field_business_category.target_id|url_encode }}" 
+             class="business-category-link">
+            {{ node.field_business_category.entity.label }}
+          </a>
+        </div>
+
+        <div class="sidebar-item">
+          <div class="section-title">Region</div>
+          <a href="/alumni-business-directory?field_business_category_target_id=All&field_region_value={{ node.field_region.value|url_encode }}" 
+             class="region-link">
+            {{ node.field_region.value }}
+          </a>
+        </div>
+
+        {% if content.field_image %}
+          <div class="sidebar-item sidebar-image">
+            {{ content.field_image }}
+          </div>
+        {% endif %}
+
+        {% if node.field_discount_details.value %}
+          <div class="sidebar-item">
+            <div class="section-title">Promotion</div>
+            <span class="promotion-text">{{ node.field_discount_details.value }}</span>
+          </div>
+        {% endif %}
+      </aside>
+
+      <div class="main-content">
+        <h2 class="company-name">{{ label }}</h2>
+
+        <div class="alumni-owner-role">
+          <span>{{ node.field_alumni_name.value }} • {{ node.field_alumni_role.value }}</span><br>
+        </div>
+
+        <div class="alumni-grad-info">
+          <span>{{ node.field_alumni_degree.value }} • {{ node.field_alumni_graduation_year.value }}</span>
+        </div>
+
+        <div class="main-text">
+          {% if content.field_description %}
+            {{ content.field_description }}
+          {% else %}
+            <p>No description available.</p>
+          {% endif %}
+        </div>
+
+        {% if content.rich_content %}
+          <div class="rich-content">
+            {{ content.rich_content }}
+          </div>
+        {% endif %}
+
+        <br> 
+
+        {% if node.field_website.uri %}
+          <div class="button-wrapper">
+            <a href="{{ node.field_website.uri }}" class="btn btn-primary" target="_blank">
+              Go To {{ label }} Website
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

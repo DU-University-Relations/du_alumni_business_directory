@@ -1,0 +1,21 @@
+uuid: ff356619-d17e-48c8-a3b7-a33ec3a83652
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_business
+    - node.type.alumni_owned_business
+id: node.alumni_owned_business.field_featured_business
+field_name: field_featured_business
+entity_type: node
+bundle: alumni_owned_business
+label: 'Featured Business'
+description: "Add the 'featured business' toggle for the alumni owned business here. "
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

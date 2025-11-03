@@ -1,0 +1,384 @@
+
+.teaser-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  width: 1160px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.teaser-item .teaser-image {
+  flex: 0 0 250px;
+  height: 250px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teaser-item .teaser-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.teaser-content {
+  flex: 1;
+}
+
+.business-category {
+  text-transform: uppercase;
+}
+
+.business-title {
+  font-weight: bold;
+  color: #05637b;
+  margin-bottom: 10px;
+}
+
+.business-description {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.discount-badge {
+  display: inline-block;
+  background-color: #a01010;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.owner-details {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 8px;
+  color: #4a4a4a;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.business-links {
+  display: flex;
+  gap: 15px;
+}
+
+.business-links a {
+  padding: 20px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.business-links .btn-primary {
+  background-color: #816040
+}
+
+
+.business-links .btn-secondary {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  background-color: initial !important;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+
+.sidebar-item {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.promotion-text {
+  color: #a01010;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.company-name {
+  font-weight: bold;
+  color: #05637b; 
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.alumni-owner-role {
+  color: #4a4a4a;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.alumni-grad-info {
+  display: inline-block;
+  text-align: left;
+  color: #4a4a4a;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.main-text {
+  line-height: 1.6;
+  text-align: left;
+}
+
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: #816040; 
+  color: white;
+}
+
+
+.views-exposed-form {
+  display: flex;
+  flex-wrap: wrap; 
+  max-width: 1160px; 
+  margin: 0 auto; 
+  gap: 20px; 
+  margin-bottom: -20px;
+}
+
+.views-exposed-form .form-item {
+  flex: 1 1 auto; 
+  min-width: 250px; 
+}
+
+.views-exposed-form .form-item select {
+  height: 42px;  
+}
+.views-exposed-form .form-actions {
+  width: 100%; 
+  display: flex;
+  justify-content: flex-start; 
+}
+
+.views-exposed-form .form-actions input.form-submit {
+  height: 50px;
+  font-size: 16px;
+  background-image: linear-gradient(to bottom, #816040, #7f5f3f);
+  color: white;
+  text-align: center;
+  border: none;
+  margin-top: -20px;
+}
+
+.pager {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin: 20px auto; 
+  text-align: center; 
+  padding-top: 20px;
+}
+
+
+
+ /* Mobile Styles */
+@media (max-width: 768px) {  
+  .teaser-item {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    width: auto; 
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: -15px;
+}
+
+.teaser-item .teaser-image {
+    width: 100%; 
+    height: auto;
+    margin-bottom: -15px;
+}
+
+.business-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px; 
+}
+
+.teaser-item .btn-primary, 
+.teaser-item .btn-secondary {
+    display: block; 
+    width: 100%; 
+    margin-bottom: 10px; 
+    float: none; 
+    text-align: center; 
+    position: relative; 
+}
+
+
+.teaser-content,
+.main-content,
+.content-wrapper,
+.content-container {
+    width: 100%; 
+    padding: 5px;
+}
+
+.business-category {
+    margin-top: 0;
+}
+
+.business-links,
+.views-exposed-form {
+    align-items: center; 
+    width: 100%; 
+    padding: 5px;
+}
+
+.business-links a,
+.views-exposed-form .form-item {
+    width: 100%; 
+    text-align: center; 
+}
+
+.btn-primary, 
+.btn-secondary {
+    display: block; 
+}
+
+.views-exposed-form .form-item label, 
+.views-exposed-form .form-item input, 
+.views-exposed-form .form-item select {
+    width: 100%; 
+    align-items: center; 
+}
+
+.views-exposed-form .form-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.views-exposed-form .form-actions input.form-submit {
+    text-align: center;
+    border: none;
+    margin: 0;
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+/* Node View */
+.company-name {
+    font-weight: bold;
+    color: #1f3a93;
+}
+
+.content-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    width: 100%; 
+}
+
+.alumni-owner-role {
+    text-align: left;
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    width: 90%; 
+    background-color: #f9f9f9; 
+    border-bottom: 1px solid #ddd; 
+    position: relative; 
+}
+
+.sidebar-item {
+    text-align: left;
+    max-width: 100%;
+    margin: 0 10px;
+}
+
+.main-content {
+    width: 100%;
+    text-align: left; 
+    align-items: center; 
+}
+
+.btn {
+    text-align: center;
+    border: none;
+    margin: 0;
+    width: 100%; 
+    box-sizing: border-box; 
+}

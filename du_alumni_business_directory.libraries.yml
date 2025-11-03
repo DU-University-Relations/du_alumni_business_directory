@@ -1,0 +1,8 @@
+alumni-business:
+  version: 1.x
+  css:
+    theme:
+      css/alumni-business.css: { media: screen }
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

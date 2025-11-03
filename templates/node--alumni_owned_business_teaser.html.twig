@@ -1,0 +1,42 @@
+{{ attach_library('du_alumni_business_directory/alumni-business') }}
+
+
+<div class="node node-alumni-business">
+  <div class="filter-container">
+    {{ exposed }}
+  </div>
+  <div class="content-wrapper">
+    <div class="teaser-item">
+      <div class="teaser-image">
+        {% if content.field_image %}
+          {{ content.field_image }}
+        {% else %}
+          <div class="image-placeholder"></div>
+        {% endif %}
+      </div>
+      <div class="teaser-content">
+        <div class="business-category">{{ node.field_business_category.entity.label }}</div>
+        <h2 class="business-title">{{ label }}</h2>
+        <div class="owner-details">
+          <div class="alumni-owner-role">
+            <span>{{ node.field_alumni_name.value }} • {{ node.field_alumni_role.value }}</span><br>
+          </div>
+          <span>{{ content.field_alumni_name.value }}</span>
+          {% if content.field_alumni_role.value %}
+            <span> • {{ content.field_alumni_role.value }}</span>
+          {% endif %}
+        </div>
+        {% if node.field_discount.value %}
+          <div class="discount-badge">{{ node.field_discount.value }}</div>
+        {% endif %}
+        <div class="business-description">{{ content.field_description }}</div>
+        <div class="business-links">
+          {% if node.field_website.uri %}
+            <a href="{{ node.field_website.uri }}" class="btn btn-primary" target="_blank">Go To {{ label }} Website</a>
+          {% endif %}
+          <a href="{{ url }}" class="btn btn-secondary">Learn More About {{ label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

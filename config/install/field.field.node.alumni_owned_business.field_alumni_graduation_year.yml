@@ -1,0 +1,19 @@
+uuid: e65c44f1-63b6-4ac6-8b4f-76042ad68d15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alumni_graduation_year
+    - node.type.alumni_owned_business
+id: node.alumni_owned_business.field_alumni_graduation_year
+field_name: field_alumni_graduation_year
+entity_type: node
+bundle: alumni_owned_business
+label: 'Alumni Graduation Year '
+description: "Add the alumni graduation year(eg '2024') here. "
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

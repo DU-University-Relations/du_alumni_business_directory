@@ -1,0 +1,6 @@
+{
+  "name": "drupal/du_alumni_business_directory",
+  "description": "Import Tuition Cost entities.",
+  "type": "drupal-custom-module-package",
+  "version": "9.25.0"
+}

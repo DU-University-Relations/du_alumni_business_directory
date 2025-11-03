@@ -1,0 +1,19 @@
+uuid: 1375cfcc-1185-4e6b-95ca-1180ead9914b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alumni_name
+    - node.type.alumni_owned_business
+id: node.alumni_owned_business.field_alumni_name
+field_name: field_alumni_name
+entity_type: node
+bundle: alumni_owned_business
+label: 'Alumni Name'
+description: "Enter the alumni name(eg 'John Coltrane') here. "
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

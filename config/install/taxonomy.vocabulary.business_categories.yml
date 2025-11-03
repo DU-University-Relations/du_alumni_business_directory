@@ -1,0 +1,9 @@
+uuid: 3c2d4631-7549-4c59-a423-a56a02da6de2
+langcode: en
+status: true
+dependencies: {  }
+name: 'Business Categories'
+vid: business_categories
+description: 'Categories of alumni owned businesses. '
+weight: 0
+new_revision: false

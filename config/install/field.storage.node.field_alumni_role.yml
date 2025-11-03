@@ -1,0 +1,16 @@
+uuid: 6134bb25-4d95-4bef-842a-e581702dddf7
+langcode: en
+status: true
+dependencies: {  }
+id: field_alumni_role
+field_name: field_alumni_role
+entity_type: node
+type: string
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

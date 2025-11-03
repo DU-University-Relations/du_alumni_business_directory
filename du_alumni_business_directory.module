@@ -1,0 +1,169 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function du_alumni_business_directory_theme($existing, $type, $theme, $path) {
+  return [
+    'node__alumni_owned_business' => [
+      'template' => 'node--alumni_owned_business',
+      'base hook' => 'node',
+    ],
+    'node__alumni_owned_business__teaser' => [
+      'template' => 'node--alumni_owned_business_teaser',
+      'base hook' => 'node',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_install().
+ */
+function du_alumni_business_directory_install() {
+  $configs = [
+    'pathauto.pattern.alumni_owned_business',
+    'simple_sitemap.bundle_settings.default-sitemap-generator.node.alumni_owned_business',
+    'views.view.alumni_business_directory',
+  ];
+
+  $module_path = drupal_get_path('module', 'du_alumni_business_directory');
+
+  foreach ($configs as $config_name) {
+    $path = DRUPAL_ROOT . '/' . $module_path . '/config/alumni1/' . $config_name . '.yml';
+    if (file_exists($path)) {
+      $data = \Drupal\Component\Serialization\Yaml::decode(file_get_contents($path));
+      \Drupal::configFactory()->getEditable($config_name)
+        ->setData($data)
+        ->save();
+    }
+  }
+
+  $vocabulary_machine_name = 'business_categories';
+  $vocabulary = \Drupal\taxonomy\Entity\Vocabulary::load($vocabulary_machine_name);
+
+  if (!$vocabulary) {
+    $vocabulary = \Drupal\taxonomy\Entity\Vocabulary::create([
+      'vid' => $vocabulary_machine_name,
+      'description' => 'Categories for alumni businesses.',
+      'name' => 'Business Categories',
+    ]);
+    $vocabulary->save();
+  }
+
+  $terms = [
+    'Arts & Media',
+    'Books & Publishing',
+    'Consulting & Services',
+    'Engineering & Design',
+    'Entertainment',
+    'Food & Beverage',
+    'Health & Wellness',
+    'Nonprofits',
+    'Others',
+    'Restaurants',
+    'Retail',
+  ];
+
+  foreach ($terms as $term_name) {
+    $term_exists = \Drupal::entityTypeManager()
+      ->getStorage('taxonomy_term')
+      ->getQuery()
+      ->condition('name', $term_name)
+      ->condition('vid', $vocabulary_machine_name)
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if (empty($term_exists)) {
+      $term = \Drupal\taxonomy\Entity\Term::create([
+        'vid' => $vocabulary_machine_name,
+        'name' => $term_name,
+      ]);
+      $term->save();
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ * Alters the exposed filter form in views.
+ */
+function du_alumni_business_directory_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id, 'views_exposed_form') !== FALSE) {
+    if (isset($form['field_region_value'])) {
+      $query = \Drupal::database()->select('node__field_region', 'r')
+        ->fields('r', ['field_region_value'])
+        ->distinct()
+        ->execute()
+        ->fetchCol();
+
+      if (!empty($query)) {
+        $options = ['' => '- Any -'] + array_combine($query, $query);
+
+        $form['field_region_value']['#type'] = 'select';
+        $form['field_region_value']['#options'] = $options;
+        $form['field_region_value']['#size'] = 1;
+        $form['field_region_value']['#multiple'] = FALSE;
+        $form['field_region_value']['#attributes']['class'][] = 'form-select';
+        $form['field_region_value']['#default_value'] = '';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function du_alumni_business_directory_uninstall() {
+  $configs_to_delete = [
+    'core.entity_form_display.node.alumni_owned_business.default',
+    'core.entity_view_display.node.alumni_owned_business.full',
+    'core.entity_view_display.node.alumni_owned_business.teaser',
+    'field.field.node.alumni_owned_business.field_alumni_degree',
+    'field.field.node.alumni_owned_business.field_alumni_graduation_year',
+    'field.field.node.alumni_owned_business.field_alumni_name',
+    'field.field.node.alumni_owned_business.field_alumni_role',
+    'field.field.node.alumni_owned_business.field_business_category',
+    'field.field.node.alumni_owned_business.field_description',
+    'field.field.node.alumni_owned_business.field_discount',
+    'field.field.node.alumni_owned_business.field_discount_details',
+    'field.field.node.alumni_owned_business.field_featured_business',
+    'field.field.node.alumni_owned_business.field_image',
+    'field.field.node.alumni_owned_business.field_region',
+    'field.field.node.alumni_owned_business.field_website',
+    'field.storage.node.field_alumni_degree',
+    'field.storage.node.field_alumni_graduation_year',
+    'field.storage.node.field_alumni_name',
+    'field.storage.node.field_alumni_role',
+    'field.storage.node.field_business_category',
+    'field.storage.node.field_description',
+    'field.storage.node.field_discount',
+    'field.storage.node.field_discount_details',
+    'field.storage.node.field_featured_business',
+    'field.storage.node.field_image',
+    'field.storage.node.field_region',
+    'field.storage.node.field_website',
+    'node.type.alumni_owned_business',
+    'taxonomy.vocabulary.business_categories',
+    'views.view.alumni_business_directory',
+  ];
+
+  foreach ($configs_to_delete as $config_name) {
+    \Drupal::configFactory()->getEditable($config_name)->delete();
+  }
+
+  if (\Drupal::service('entity_type.manager')->hasDefinition('node_type')) {
+    $content_type = \Drupal\node\Entity\NodeType::load('alumni_owned_business');
+    if ($content_type) {
+      $content_type->delete();
+    }
+  }
+
+  $vocabulary = \Drupal\taxonomy\Entity\Vocabulary::load('business_categories');
+  if ($vocabulary) {
+    $vocabulary->delete();
+  }
+
+  drupal_flush_all_caches();
+}
