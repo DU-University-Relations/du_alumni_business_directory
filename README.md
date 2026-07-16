@@ -44,6 +44,32 @@ then processed with the DU PHP 8.3 and Drupal 10 Rector rules used for Drupal
 - full and teaser rendering for an Alumni Owned Business node
 - preservation of active downstream fields, displays, and View configuration
 
+## Release workflow
+
+This package is published through Packagist rather than Drupal.org, so the
+version in `du_alumni_business_directory.info.yml` is maintained manually.
+Packagist derives the Composer package version from the Git tag; do not add a
+`version` field to `composer.json`.
+
+For each release:
+
+1. Create a release branch from `main`. The info file should contain the
+   intended release with a `-dev` suffix, such as `9.25.3-dev`.
+2. Complete the release changes and run the documented verification checks.
+3. Remove the `-dev` suffix in the info file, using a quoted value such as
+   `version: '9.25.3'`, and commit the release version.
+4. Tag that commit with the matching Git tag, such as `v9.25.3`, and push the
+   release branch and tag. Packagist will publish the version represented by
+   the tag.
+5. Confirm that the new version and expected commit appear on Packagist.
+6. Merge the release branch back into `main`, update the info file to the next
+   planned development version, such as `version: '9.25.4-dev'`, and commit the
+   post-release version bump.
+
+The release tag and the version in the tagged info file must match. Do not
+leave `main` on an exact released version; it should identify the next planned
+development version with the `-dev` suffix.
+
 ## Known follow-up work
 
 - Add focused coverage for the region exposed-filter behavior. The current
