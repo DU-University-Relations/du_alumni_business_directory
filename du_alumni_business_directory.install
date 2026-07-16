@@ -1,0 +1,119 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall hooks for the Alumni Business Directory.
+ */
+
+use Drupal\node\Entity\NodeType;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+ * Implements hook_install().
+ */
+function du_alumni_business_directory_install() {
+  $vocabulary_machine_name = 'business_categories';
+
+  $vocabulary = Vocabulary::load($vocabulary_machine_name);
+  if (!$vocabulary) {
+    $vocabulary = Vocabulary::create([
+      'vid' => $vocabulary_machine_name,
+      'description' => 'Categories for alumni businesses.',
+      'name' => 'Business Categories',
+    ]);
+    $vocabulary->save();
+  }
+
+  $terms = [
+    'Arts & Media',
+    'Books & Publishing',
+    'Consulting & Services',
+    'Engineering & Design',
+    'Entertainment',
+    'Food & Beverage',
+    'Health & Wellness',
+    'Nonprofits',
+    'Others',
+    'Restaurants',
+    'Retail',
+  ];
+
+  foreach ($terms as $term_name) {
+    $term_exists = \Drupal::entityTypeManager()
+      ->getStorage('taxonomy_term')
+      ->getQuery()
+      ->condition('name', $term_name)
+      ->condition('vid', $vocabulary_machine_name)
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if (empty($term_exists)) {
+      $term = Term::create([
+        'vid' => $vocabulary_machine_name,
+        'name' => $term_name,
+      ]);
+      $term->save();
+      \Drupal::logger('du_alumni_business_directory')->info(
+        'Added taxonomy term: @term',
+        ['@term' => $term_name],
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function du_alumni_business_directory_uninstall() {
+  $configs_to_delete = [
+    'core.entity_form_display.node.alumni_owned_business.default',
+    'core.entity_view_display.node.alumni_owned_business.full',
+    'core.entity_view_display.node.alumni_owned_business.teaser',
+    'field.field.node.alumni_owned_business.field_alumni_degree',
+    'field.field.node.alumni_owned_business.field_alumni_graduation_year',
+    'field.field.node.alumni_owned_business.field_alumni_name',
+    'field.field.node.alumni_owned_business.field_alumni_role',
+    'field.field.node.alumni_owned_business.field_business_category',
+    'field.field.node.alumni_owned_business.field_description',
+    'field.field.node.alumni_owned_business.field_discount',
+    'field.field.node.alumni_owned_business.field_discount_details',
+    'field.field.node.alumni_owned_business.field_featured_business',
+    'field.field.node.alumni_owned_business.field_image',
+    'field.field.node.alumni_owned_business.field_region',
+    'field.field.node.alumni_owned_business.field_website',
+    'field.storage.node.field_alumni_degree',
+    'field.storage.node.field_alumni_graduation_year',
+    'field.storage.node.field_alumni_name',
+    'field.storage.node.field_alumni_role',
+    'field.storage.node.field_business_category',
+    'field.storage.node.field_description',
+    'field.storage.node.field_discount',
+    'field.storage.node.field_discount_details',
+    'field.storage.node.field_featured_business',
+    'field.storage.node.field_image',
+    'field.storage.node.field_region',
+    'field.storage.node.field_website',
+    'node.type.alumni_owned_business',
+    'taxonomy.vocabulary.business_categories',
+    'views.view.alumni_business_directory',
+  ];
+
+  foreach ($configs_to_delete as $config_name) {
+    \Drupal::configFactory()->getEditable($config_name)->delete();
+  }
+
+  if (\Drupal::service('entity_type.manager')->hasDefinition('node_type')) {
+    $content_type = NodeType::load('alumni_owned_business');
+    if ($content_type) {
+      $content_type->delete();
+    }
+  }
+
+  $vocabulary = Vocabulary::load('business_categories');
+  if ($vocabulary) {
+    $vocabulary->delete();
+  }
+
+  drupal_flush_all_caches();
+}
